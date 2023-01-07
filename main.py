@@ -7,7 +7,7 @@ def main():
 
     while program_on:
         channel = input("please Select your prefered channel..")
-        factory = ComFactory.channel(channel=channel)
+        factory = ComFactory.channel(channel)
         if factory:
             program_on = False
 

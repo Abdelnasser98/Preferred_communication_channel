@@ -18,7 +18,7 @@ class Sms(CommunicationChannel):
         message = self.client.messages.create(
             body=body,
             from_=self.phoneNumber,
-            to='+{number}'
+            to=number
         )
 
         return message.sid
