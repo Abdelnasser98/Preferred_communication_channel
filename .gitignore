@@ -1,0 +1,4 @@
+.idea/
+venv/
+emailService/credentials.json
+sms/SMScreds.json

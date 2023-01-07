@@ -15,9 +15,11 @@ class Email(CommunicationChannel):
 
     def __init__(self):
         self.creds = None
-        SCOPES = ['https://mail.google.com/', "https://www.googleapis.com/auth/gmail.send"]
+        SCOPES = ['https://mail.google.com/',
+                  "https://www.googleapis.com/auth/gmail.send"]
         if os.path.exists('token.json'):
-            self.creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+            self.creds = Credentials.from_authorized_user_file(
+                'token.json', SCOPES)
         if not self.creds or not self.creds.valid:
             if self.creds and self.creds.expired and self.creds.refresh_token:
                 self.creds.refresh(Request())
@@ -29,7 +31,7 @@ class Email(CommunicationChannel):
                 with open('token.json', 'w') as token:
                     token.write(self.creds.to_json())
 
-    def send_message(self, title=None, body='', number=None, email=None):
+    def send_message(self, title=None, body='', email=None):
         try:
             service = build('gmail', 'v1', credentials=self.creds)
             message = EmailMessage()
@@ -39,11 +41,13 @@ class Email(CommunicationChannel):
             message['From'] = ''
             message['Subject'] = title
 
-            encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+            encoded_message = base64.urlsafe_b64encode(
+                message.as_bytes()).decode()
             create_message = {
                 'raw': encoded_message
             }
-            send_message = (service.users().messages().send(userId='me', body=create_message).execute())
+            send_message = (service.users().messages().send(
+                userId='me', body=create_message).execute())
         except HttpError as error:
             print(error)
             send_message = None
