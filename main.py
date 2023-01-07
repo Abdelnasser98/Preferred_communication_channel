@@ -1,10 +1,16 @@
-from sms.sms import Sms
-from emailService.email import Email
+from comFactory import ComFactory
+
 
 def main():
-    email = Email()
-    m = email.send_message(email='mohamednaser1000.mn@gmail.com', title='Test', body='HelloWorld')
-    print(m)
+    """Execution of the main function -- clientSide"""
+    program_on = True
+
+    while program_on:
+        channel = input("please Select your prefered channel..")
+        factory = ComFactory.channel(channel)
+        if factory:
+            program_on = False
+
 
 if __name__ == '__main__':
     main()

@@ -1,8 +1,9 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractstaticmethod
 
 
 class CommunicationChannel(ABC):
 
-    @abstractmethod
-    def send_message(self, title=None, body='', number=None, email=None):
+    @abstractstaticmethod
+    def send_message(title=None, body='', number=None, email=None):
+        """This is method for the communication channels"""
         pass
