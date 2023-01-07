@@ -2,3 +2,4 @@
 venv/
 emailService/credentials.json
 sms/SMScreds.json
+token.json
