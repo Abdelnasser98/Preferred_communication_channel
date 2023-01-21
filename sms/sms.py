@@ -1,8 +1,7 @@
 import json
 
-from comChannelInterface import CommunicationChannel
 from twilio.rest import Client
-
+from factory_method.comChannelInterface import CommunicationChannel
 
 class Sms(CommunicationChannel):
 

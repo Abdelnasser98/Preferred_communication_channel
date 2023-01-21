@@ -7,9 +7,9 @@ from readingFiles import ReadFile
 class ComFactory:
     @staticmethod
     def channel(channel):
-        sms = Sms()
-        emailService = Email()
+
         if channel == 'SMS':
+            sms = Sms()
             rf = ReadFile.read_csv_file('phone')
             message = input('Your message:\t')
             for number in rf:
@@ -17,6 +17,7 @@ class ComFactory:
                 print(res)
             return True
         elif channel == 'Email':
+            emailService = Email()
             rf = ReadFile.read_csv_file('email')
             title = input('Please enter the title of your email..!\t')
             body = input('Your message:\t')

@@ -8,7 +8,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 
-from comChannelInterface import CommunicationChannel
+from factory_method.comChannelInterface import CommunicationChannel
 
 
 class Email(CommunicationChannel):
@@ -17,7 +17,7 @@ class Email(CommunicationChannel):
         self.creds = None
         SCOPES = ['https://mail.google.com/',
                   "https://www.googleapis.com/auth/gmail.send"]
-        if os.path.exists('token.json'):
+        if os.path.exists('../token.json'):
             self.creds = Credentials.from_authorized_user_file(
                 'token.json', SCOPES)
         if not self.creds or not self.creds.valid:
