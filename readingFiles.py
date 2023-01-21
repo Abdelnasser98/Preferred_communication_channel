@@ -5,7 +5,7 @@ from email_handler import Email_handler
 
 class ReadFile:
     @staticmethod
-    def read_csv_file(file_path:str):
+    def read_csv_file(file_path:str, message:str):
         email_address = []
         sms_numbers = []
         with open(file_path, encoding="utf-8-sig") as file:
@@ -18,14 +18,16 @@ class ReadFile:
                             sms_numbers.append(row["phone number"] or row["phone"] or row["sms"])
                         else:
                             continue
-        sms_thread = Thread(target=Sms_handler.handler(sms_numbers,message="test"))
-        email_thread = Thread(target=Email_handler.handler(email_address,message="test"))
+        sms_thread = Thread(target=Sms_handler.handler(sms_numbers,message=message))
+        email_thread = Thread(target=Email_handler.handler(email_address,message=message))
         """""""Starting multiple threads"""""""
         sms_thread.start()
         email_thread.start()
         """"Joining the threads together after finishing the function"""""
         sms_thread.join()
         email_thread.join()
+
+        return False
 
 
 

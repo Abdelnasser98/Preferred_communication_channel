@@ -1,4 +1,3 @@
-from comFactory import ComFactory
 from readingFiles import ReadFile
 
 def main():
@@ -7,9 +6,9 @@ def main():
 
     while program_on:
         file_path = input("please Select your prefered channel..")
-        reading_files = ReadFile.read_csv_file(file_path=file_path)
-        # if factory:
-        #     program_on = False
+        message = input("Write your message!")
+        reading_files = ReadFile.read_csv_file(file_path=file_path, message=message)
+        program_on = reading_files
 
 
 if __name__ == '__main__':
